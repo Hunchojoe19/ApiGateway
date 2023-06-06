@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: API-Gateway
+
+
+
+
+
+
+  cloud:
+    gateway:
+      routes:
+        - id: StudentService
+          uri: lb://StudentService
+          predicates:
+            - Path=/api/v1/student/**
+        - id: LibraryApp
+          uri: lb://LibraryApp
+          predicates:
+            - Path=/api/v1/library/**
+        - id: BookApp
+          uri: lb://BookApp
+          predicates:
+            - Path=/api/v1/book/**
+
+server:
+  port: 9094
+eureka:
+  instance:
+    hostname: localhost
+
